@@ -1,12 +1,9 @@
+// Pour INFO  pas de modif
 import 'dart:math';
 class TaroGame {
   late int nbMain;
   late int nbJoueur;
   late int turnJoueur;
-//stocker lrd cartes
-//LesPlis
-//Les Mains
-//Stocker les chiens
 
   late int whichPli;
 

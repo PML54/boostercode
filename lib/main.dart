@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'tarotcartes.dart';
+import 'package:booster/tarotcartes.dart';
 
 //import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
-//import 'package:flutter_beep/flutter_beep.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,8 +15,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Tarot 1.1',
-      home: const MyHomePage(title: 'Tarot 1.1'),
+      title: 'Tarot 1.3',
+      home: const MyHomePage(title: 'Tarot 1.3'),
     );
   }
 }
@@ -46,6 +45,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  double widthMineur = 60;
+  double heightMineur = 80;
+  double widthMajeur = 85;
+  double heightMajeur = 140;
   int _counter = 0;
   int _bout = 0;
   int leftDiceNumber = 1;
@@ -78,27 +81,26 @@ class _MyHomePageState extends State<MyHomePage> {
         nb_excuse = 0;
       });
     }
-   preneur() {
-      // AudioPlayer player = new AudioPlayer();
-      setState(() {
 
-      });
+    preneur() {
+      // AudioPlayer player = new AudioPlayer();
+      setState(() {});
     }
+
     nonpreneur() {
       // AudioPlayer player = new AudioPlayer();
-      this.setState(() {
-
-      });
+      this.setState(() {});
     }
+
     onPressGarde() {
-     // AudioPlayer player = new AudioPlayer();
+      // AudioPlayer player = new AudioPlayer();
       setState(() {
         pari = "GARDE";
       });
     }
 
     onPressGardeSans() {
-    //  AudioPlayer player = new AudioPlayer();
+      //  AudioPlayer player = new AudioPlayer();
       this.setState(() {
         pari = "GARDE SANS";
       });
@@ -112,8 +114,8 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     onPressHander5() {
-     // AudioPlayer player = new AudioPlayer();
-    //  player.play("https://bit.ly/2CH50TO");
+      // AudioPlayer player = new AudioPlayer();
+      //  player.play("https://bit.ly/2CH50TO");
       this.setState(() {
         valeurPli = valeurPli + 4.5;
       });
@@ -144,6 +146,42 @@ class _MyHomePageState extends State<MyHomePage> {
       });
     }
 
+    //**
+    TextButton buildCard(int couleur, int numCard)
+
+//  0 c'est l'atout
+    //   22 + 4 x14 =78
+    /*
+    double widthMineur = 60;
+  double heightMineur = 80;
+  double widthMajeur = 85;
+  double heightMajeur = 140;
+     */
+    {
+      int computeNum = 0;
+      if (couleur == 0) {
+        computeNum = 22 - numCard;
+      } else {
+        computeNum = 22 + (couleur - 1) * 14 + numCard;
+      }
+
+        widthMajeur =80;
+        heightMajeur=130;
+
+
+      return TextButton(
+          onPressed: onPressHander4,
+          child: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Image.asset(
+              "tarot/" + tarotCartes[computeNum].imageCarte,
+              width: widthMajeur,
+              height: heightMajeur,
+            ),
+          ),
+        );
+    }
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     // The Flutter framework has been optimized to make rerunning build methods
@@ -160,185 +198,95 @@ class _MyHomePageState extends State<MyHomePage> {
           Column(
             //   mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              TextButton(
-                onPressed: onPressHander5,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    "tarot/" + tarotCartes[1].imageCarte,
-                    width: 90,
-                    height: 140,
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: onPressHander5,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    "tarot/" + tarotCartes[2].imageCarte,
-                    width: 90,
-                    height: 140,
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: onPressHander5,
-                child: Image.asset(
-                  "tarot/" + tarotCartes[22].imageCarte,
-                  width: 90,
-                  height: 140,
-                ),
-              ),
+              buildCard(0, 0),
+              buildCard(0, 20),
+              buildCard(0, 21),
             ],
           ),
           Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              TextButton(
-                onPressed: onPressHander5,
-                child: Image.asset(
-                  "tarot/" + tarotCartes[23].imageCarte,
-                  width: 90,
-                  height: 140,
-                ),
-              ),
-              TextButton(
-                onPressed: onPressHander4,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    "tarot/" + tarotCartes[24].imageCarte,
-                    width: 90,
-                    height: 140,
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: onPressHander3,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    "tarot/" + tarotCartes[25].imageCarte,
-                    width: 90,
-                    height: 140,
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: onPressHander2,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    "tarot/" + tarotCartes[26].imageCarte,
-                    width: 90,
-                    height: 140,
-                  ),
-                ),
-              ),
+              buildCard(1, 1),
+              buildCard(1, 2),
+              buildCard(1, 3),
+              buildCard(1, 4),
             ],
           ),
+
           Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              TextButton(
-                onPressed: onPressHander1,
-                child: Image.asset(
-                  "tarot/" + tarotCartes[27].imageCarte,
-                  width: 80,
-                  height: 120,
-                ),
-              ),
-              TextButton(
-                onPressed: onPressHander1,
-                child: Image.asset(
-                  "tarot/" + tarotCartes[28].imageCarte,
-                  width: 80,
-                  height: 120,
-                ),
-              ),
-              TextButton(
-                onPressed: onPressHander1,
-                child: Image.asset(
-                  "tarot/" + tarotCartes[29].imageCarte,
-                  width: 80,
-                  height: 120,
-                ),
-              ),
-              TextButton(
-                onPressed: onPressHander1,
-                child: Image.asset(
-                  "tarot/" + tarotCartes[30].imageCarte,
-                  width: 80,
-                  height: 120,
-                ),
-              ),
-              TextButton(
-                onPressed: onPressHander1,
-                child: Image.asset(
-                  "tarot/" + tarotCartes[31].imageCarte,
-                  width: 80,
-                  height: 120,
-                ),
-              ),
+              buildCard(2, 1),
+              buildCard(2, 2),
+              buildCard(2, 3),
+              buildCard(2, 4),
             ],
           ),
+
           Column(
-            //  mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              TextButton(
-                onPressed: onPressHander1,
-                child: Image.asset(
-                  "tarot/" + tarotCartes[3].imageCarte,
-                  width: 80,
-                  height: 120,
-                ),
-              ),
-              TextButton(
-                onPressed: onPressHander1,
-                child: Image.asset(
-                  "tarot/" + tarotCartes[5].imageCarte,
-                  width: 80,
-                  height: 120,
-                ),
-              ),
-              TextButton(
-                onPressed: onPressHander1,
-                child: Image.asset(
-                  "tarot/" + tarotCartes[7].imageCarte,
-                  width: 80,
-                  height: 120,
-                ),
-              ),
-              TextButton(
-                onPressed: onPressHander1,
-                child: Image.asset(
-                  "tarot/" + tarotCartes[9].imageCarte,
-                  width: 80,
-                  height: 120,
-                ),
-              ),
-              TextButton(
-                onPressed: onPressHander1,
-                child: Image.asset(
-                  "tarot/" + tarotCartes[18].imageCarte,
-                  width: 80,
-                  height: 120,
-                ),
-              ),
+              buildCard(3, 1),
+              buildCard(3, 2),
+              buildCard(3, 3),
+              buildCard(3, 4),
             ],
           ),
+
+
+          Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              buildCard(4, 1),
+              buildCard(4, 2),
+              buildCard(4, 3),
+              buildCard(4, 4),
+            ],
+          ),
+
+          Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+
+              buildCard(1, 10),
+
+            ],
+          ),
+
+
+
+        Column(
+          // mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            buildCard(0, 2),
+
+
+          ],
+        ),
+
+
         ],
+
       ),
+
       // This trailing comma makes auto-formatting nicer for build methods.
       bottomNavigationBar: Row(
           //crossAxisAlignment: CrossAxisAlignment.center,
           //  mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             IconButton(
+              // Parametres
+              icon: const Icon(Icons.palette),
+
+              iconSize: 60,
+              color: Colors.deepOrange,
+
+              onPressed: preneur,
+            ),
+            IconButton(
               // unused
               icon: const Icon(Icons.broken_image_sharp),
-              // Voiture
+
               iconSize: 60,
               color: Colors.deepOrange,
 
@@ -362,7 +310,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
               onPressed: razScore,
             ),
-
             TextButton(
               onPressed: onPressGarde,
               child: Text(
@@ -372,13 +319,13 @@ class _MyHomePageState extends State<MyHomePage> {
             TextButton(
               onPressed: onPressGardeSans,
               child: Text(
-                "GARDE SANS",
+                "SANS",
               ),
             ),
             TextButton(
               onPressed: onPressGardeContre,
               child: Text(
-                "GARDE CONTRE",
+                "CONTRE",
               ),
             ),
           ]),
